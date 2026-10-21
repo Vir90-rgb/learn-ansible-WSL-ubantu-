@@ -1,0 +1,17 @@
+
+
+- name: Setup nginx web servers
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Install Nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+    - name: Create deploy user
+      ansible.buitin.user:
+        name: deploy
+    - name: ensure nginx is running
+      ansible.builtin.service:
+        name: nginx
+        state: started    
